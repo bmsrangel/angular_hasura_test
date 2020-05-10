@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   API: 'https://hasuradetestes.herokuapp.com/v1/graphql',
-  WS: 'ws://hasuradetestes.herokuapp.com/v1/graphql',
 };
 
 /*

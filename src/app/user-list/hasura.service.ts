@@ -16,7 +16,6 @@ export class HasuraService {
 
   constructor(private http: HttpClient) {
     this.url = environment.API;
-    this.ws = environment.WS;
   }
 
   getUsers() {
@@ -38,22 +37,6 @@ export class HasuraService {
         map((data: UserModel[]) => data.map((user) => new UserModel(user))),
         tap(console.log)
       );
-  }
-
-  watchUsers() {
-    this.usersWatch$ = webSocket(this.ws);
-    this.usersWatch$.next({
-      query: `subscription MySubscription {
-      usuarios {
-        id
-        name
-        username
-        last_name
-      }
-    }
-    `,
-    });
-    return this.usersWatch$.asObservable();
   }
 
   addNewUser(username: string, name: string, lastName: string) {
